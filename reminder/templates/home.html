@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content%}
+<h1 align="center" class="mb-4">Your notes</h1>
+
+<div class="mb-5" align="left">
+    <form method="POST">
+        <div class="card mb-2" mb-3>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <input type="text" class="form-control" body="noteTitle" id="noteTitle" placeholder="Title your note here">
+                </h5>
+                <p class="card-text">         
+                    <textarea name="noteBody" id="noteBody" class="form-control" placeholder="Leave a note here" style="height: 100px"></textarea>
+                </p>
+                <button type="submit" class="btn btn-primary btn-sm">Create</button>
+            </div>
+        </div>  
+    </form>
+</div>
+
+{% for note in user.notes %}
+<div class="card mb-2" mb-3>
+    <div class="card-body">
+        <h5 class="card-title"> {{ note.title }} </h5>
+        <p class="card-text"> {{ note.data }} </p>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success btn-sm">Update</button>
+            <button type="button" class="btn btn-danger btn-sm" onClick="deleteNote({{ note.id }})">Delete</button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
